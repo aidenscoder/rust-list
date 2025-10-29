@@ -1,5 +1,5 @@
-mod linkedlist;
+pub mod property;
 
-fn main() {
-    println!("Hello, world!");
+pub fn main(){
+    
 }
