@@ -1,3 +1,5 @@
+use std::iter;
+
 #[derive(Clone)]
 pub struct Node<T:Clone> {
     pub value:T,
@@ -57,15 +59,17 @@ impl<T:Clone> LinkedList<T> {
     }
 
     pub fn extend_end(&mut self, values:&[T]){
-        for value in values {
-            self.push_end(value.clone());
+        for value in values.to_owned() {
+            self.push_end(value);
             self.size += 1;
         }
     }
 
     pub fn extend_front(&mut self, values:&[T]){
-        for value in values.iter().rev() {
-            self.push_front(value.clone());
+        let mut iter_obj = values.to_owned();
+        iter_obj.reverse();
+        for value in iter_obj {
+            self.push_front(value);
             self.size += 1;
         }
     }
